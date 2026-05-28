@@ -111,7 +111,24 @@ getPaperBtn.addEventListener("click", (event) => {
     computerWins.innerHTML = counterComputer;
   }
 });
-
+const minutes_inp = document.querySelector(".minutes_inp");
+const p_days = document.querySelector(".days_p");
+minutes_inp.addEventListener("input", converter);
+function converter(event) {
+  const number_input = parseFloat(minutes_inp.value);
+  if (isNaN(number_input)) {
+    return;
+  }
+  const days = Math.floor(number_input / 1440);
+  const ostacha = Math.floor(number_input % 1440);
+  const hours = Math.floor(ostacha / 60);
+  const minutes = Math.floor(number_input % 60);
+  // console.log(days);
+  // console.log(ostacha);
+  p_days.textContent = `${days}днів ${hours} годин ${minutes} хвилин`;
+  console.log(hours);
+  console.log(minutes);
+}
 // const button1 = document.querySelector("button-1");
 // const button2 = document.querySelector("button-2");
 // const button3 = document.querySelector("button-3");
