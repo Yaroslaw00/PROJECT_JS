@@ -134,7 +134,9 @@ const button2 = document.querySelector("button-2");
 const button3 = document.querySelector("button-3");
 const button4 = document.querySelector("button-4");
 const button6 = document.querySelector("button-6");
-const button7 = document.querySelector("button-7");
+const button8 = document.querySelector("button-8");
+const button9 = document.querySelector("button-9");
+
 const scientists = [
   {
     name: "Albert",
@@ -221,13 +223,15 @@ const scientists = [
     id: 12,
   },
 ];
-// function SurnamewithC(scientists) {
-//   const findLetter = scientists.filter((scientist) => {
-//     return scientist.surname[0] == "C";
+// 1. function _19thCentury(scientists) {
+//   const century = scientists.filter((scientist) => {
+//     return scientist.born >= 1801 && scientist.born <= 1900;
 //   });
-//   console.log(findLetter);
+//   return century;
 // }
-// console.log(SurnamewithC(scientists));
+// console.log(_19thCentury(scientists));
+
+// 2.
 // function AlphabetofScientists(scientists) {
 //   const result = scientists.sort((a, b) => {
 //     const name_a = a.name;
@@ -236,10 +240,10 @@ const scientists = [
 //     console.log(name_b);
 //     return name_a.localeCompare(name_b);
 //   });
-//   console.log(result);
+//   return result;
 // }
 // console.log(AlphabetofScientists(scientists));
-// function orderYears(scientists) {
+//  3. function orderYears(scientists) {
 //   return [...scientists].sort((a, b) => {
 //     const lifeYearsA = a.dead - a.born;
 //     const lifeYearsB = b.dead - b.born;
@@ -248,29 +252,55 @@ const scientists = [
 //   });
 // }
 // console.log(orderYears(scientists));
-// function futureborned(scientists) {
+//  4. function futureborned(scientists) {
 //   const orderYearsArr = scientists.sort((a, b) => {
 //     return b.born - a.born;
 //   });
 //   return orderYearsArr[0];
 // }
 // console.log(futureborned(scientists));
-// function _19thCentury(scientists) {
-//   const century = scientists.filter((scientist) => {
-//     return scientist.born >= 1801 && scientist.born <= 1900;
+
+//  6. function SurnamewithC(scientists) {
+//   const findLetter = scientists.filter((scientist) => {
+//     return scientist.surname[0] == "C";
 //   });
-//   return century;
+//   console.log(findLetter);
 // }
-// console.log(_19thCentury(scientists));
-function deleteLetter(scientists) {
-  const result = scientists.filter((scientist) => {
-    const deleteA = scientist.name[0] == "A";
-    if (deleteA) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-  return result;
-}
-console.log(deleteLetter(scientists));
+// console.log(SurnamewithC(scientists));
+
+//  8.
+// function deleteLetter(scientists) {
+//   const result = scientists.filter((scientist) => {
+//     const deleteA = scientist.name[0] == "A";
+//     if (deleteA) {
+//       return false;
+//     } else {
+//       return true;
+//     }
+//   });
+//   return result;
+// }
+// console.log(deleteLetter(scientists));
+
+// function which_scientist(scientists) {
+//   const old_Scientist = scientists.map((scientist) => {
+//     const age = scientist.dead - scientist.born;
+//     return age;
+//   });
+//   console.log(old_Scientist);
+
+//   const oldest = scientists.reduce((max, scientist) => {
+//     const currentAge = scientist.dead - scientist.born;
+//     const maxAge = max.dead - max.born;
+
+//     if (currentAge > maxAge) {
+//       return scientist;
+//     } else {
+//       return max;
+//     }
+//   });
+
+//   return oldest;
+// }
+
+// console.log(which_scientist(scientists));
