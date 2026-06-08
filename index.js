@@ -129,13 +129,15 @@
 //   console.log(hours);
 //   console.log(minutes);
 // }
-const button1 = document.querySelector("button-1");
-const button2 = document.querySelector("button-2");
-const button3 = document.querySelector("button-3");
-const button4 = document.querySelector("button-4");
-const button6 = document.querySelector("button-6");
-const button8 = document.querySelector("button-8");
-const button9 = document.querySelector("button-9");
+const button1 = document.querySelector(".button-1");
+const button2 = document.querySelector(".button-2");
+const button3 = document.querySelector(".button-3");
+const button4 = document.querySelector(".button-4");
+const button5 = document.querySelector(".button-5");
+const button6 = document.querySelector(".button-6");
+const button7 = document.querySelector(".button-7");
+const button8 = document.querySelector(".button-8");
+const button9 = document.querySelector(".button-9");
 
 const scientists = [
   {
@@ -223,84 +225,156 @@ const scientists = [
     id: 12,
   },
 ];
-// 1. function _19thCentury(scientists) {
-//   const century = scientists.filter((scientist) => {
-//     return scientist.born >= 1801 && scientist.born <= 1900;
-//   });
-//   return century;
-// }
-// console.log(_19thCentury(scientists));
 
-// 2.
-// function AlphabetofScientists(scientists) {
-//   const result = scientists.sort((a, b) => {
-//     const name_a = a.name;
-//     const name_b = b.name;
-//     console.log(name_a);
-//     console.log(name_b);
-//     return name_a.localeCompare(name_b);
-//   });
-//   return result;
-// }
-// console.log(AlphabetofScientists(scientists));
-//  3. function orderYears(scientists) {
-//   return [...scientists].sort((a, b) => {
-//     const lifeYearsA = a.dead - a.born;
-//     const lifeYearsB = b.dead - b.born;
+// 1.
+function _19thCentury(scientists) {
+  const century = scientists.filter((scientist) => {
+    return scientist.born >= 1801 && scientist.born <= 1900;
+  });
+  return century;
+}
 
-//     return lifeYearsA - lifeYearsB;
-//   });
-// }
-// console.log(orderYears(scientists));
-//  4. function futureborned(scientists) {
-//   const orderYearsArr = scientists.sort((a, b) => {
-//     return b.born - a.born;
-//   });
-//   return orderYearsArr[0];
-// }
-// console.log(futureborned(scientists));
+button1.addEventListener("click", () => {
+  const result = _19thCentury(scientists);
+  console.log(result);
+});
+// 2. Сортировка по алфавиту
+function AlphabetofScientists(scientists) {
+  // Добавили [...scientists], чтобы sort не ломал исходный массив
+  const result = [...scientists].sort((a, b) => {
+    const name_a = a.name;
+    const name_b = b.name;
+    return name_a.localeCompare(name_b);
+  });
+  return result;
+}
 
-//  6. function SurnamewithC(scientists) {
-//   const findLetter = scientists.filter((scientist) => {
-//     return scientist.surname[0] == "C";
-//   });
-//   console.log(findLetter);
-// }
-// console.log(SurnamewithC(scientists));
+// 3. Сортировка по количеству прожитых лет
+function orderYears(scientists) {
+  return [...scientists].sort((a, b) => {
+    const lifeYearsA = a.dead - a.born;
+    const lifeYearsB = b.dead - b.born;
+    return lifeYearsA - lifeYearsB;
+  });
+}
 
-//  8.
-// function deleteLetter(scientists) {
-//   const result = scientists.filter((scientist) => {
-//     const deleteA = scientist.name[0] == "A";
-//     if (deleteA) {
-//       return false;
-//     } else {
-//       return true;
-//     }
-//   });
-//   return result;
-// }
-// console.log(deleteLetter(scientists));
+// 4. Родился позже всех
+function futureborned(scientists) {
+  // Добавили [...scientists], чтобы sort не ломал исходный массив
+  const orderYearsArr = [...scientists].sort((a, b) => {
+    return b.born - a.born;
+  });
+  return orderYearsArr[0];
+}
 
-// function which_scientist(scientists) {
-//   const old_Scientist = scientists.map((scientist) => {
-//     const age = scientist.dead - scientist.born;
-//     return age;
-//   });
-//   console.log(old_Scientist);
+// 5. Совпадают первые буквы имени и фамилии
+function findMatchingLetters(scientists) {
+  return scientists.filter((scientist) => {
+    const firstLetterName = scientist.name[0].toLowerCase();
+    const firstLetterSurname = scientist.surname[0].toLowerCase();
+    return firstLetterName === firstLetterSurname;
+  });
+}
 
-//   const oldest = scientists.reduce((max, scientist) => {
-//     const currentAge = scientist.dead - scientist.born;
-//     const maxAge = max.dead - max.born;
+// 6. Год рождения Альберта Эйнштейна
+function findtheBirth(scientists) {
+  // Твоя логика с reduce сохранена
+  const birth = scientists.reduce((accumulator) => {
+    const AlbertsBirth = scientists[0].born;
+    return AlbertsBirth;
+  }); // добавлен стартовый аккумулятор для надежности reduce
+  return `Альберт народився у ${birth} році`;
+}
 
-//     if (currentAge > maxAge) {
-//       return scientist;
-//     } else {
-//       return max;
-//     }
-//   });
+// 7. Фамилии на "С"
+function SurnamewithC(scientists) {
+  const findLetter = scientists.filter((scientist) => {
+    return scientist.surname[0] == "C";
+  });
+  return findLetter; // Изменили console.log на return, чтобы вернуть результат в кнопку
+}
 
-//   return oldest;
-// }
+// 8. Удалить ученых на букву "А"
+function deleteLetter(scientists) {
+  const result = scientists.filter((scientist) => {
+    const deleteA = scientist.name[0] == "A";
+    if (deleteA) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  return result;
+}
 
-// console.log(which_scientist(scientists));
+// 9. Самый старый и самый молодой
+function which_scientist(scientists) {
+  const oldest = scientists.reduce((max, scientist) => {
+    const currentAge = scientist.dead - scientist.born;
+    const maxAge = max.dead - max.born;
+    if (currentAge > maxAge) {
+      return scientist;
+    } else {
+      return max;
+    }
+  });
+
+  const youngest = scientists.reduce((min, scientist) => {
+    const currentAge = scientist.dead - scientist.born;
+    const minAge = min.dead - min.born;
+    if (currentAge < minAge) {
+      return scientist;
+    } else {
+      return min;
+    }
+  });
+
+  return {
+    theYoungest: youngest,
+    theOldest: oldest,
+  };
+}
+
+// ==========================================
+// НАВЕШИВАНИЕ ОБРАБОТЧИКОВ КЛИКА
+// ==========================================
+
+button2.addEventListener("click", () => {
+  const result = AlphabetofScientists(scientists);
+  console.log("Вчені за алфавітом:", result);
+});
+
+button3.addEventListener("click", () => {
+  const result = orderYears(scientists);
+  console.log("Вчені за кількістю прожитих років:", result);
+});
+
+button4.addEventListener("click", () => {
+  const result = futureborned(scientists);
+  console.log("Вчений, який народився найпізніше:", result);
+});
+
+button5.addEventListener("click", () => {
+  const result = findMatchingLetters(scientists);
+  console.log("Вчені з однаковими першими літерами імені та прізвища:", result);
+});
+
+button6.addEventListener("click", () => {
+  const result = findtheBirth(scientists);
+  console.log(result);
+});
+
+button7.addEventListener("click", () => {
+  const result = SurnamewithC(scientists);
+  console.log("Вчені, прізвища яких починаються на 'С':", result);
+});
+
+button8.addEventListener("click", () => {
+  const result = deleteLetter(scientists);
+  console.log("Список вчених без літери 'А' в імені:", result);
+});
+
+button9.addEventListener("click", () => {
+  const result = which_scientist(scientists);
+  console.log("Наймолодший та найстаріший вчені:", result);
+});
