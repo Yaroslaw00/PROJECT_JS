@@ -146,6 +146,8 @@ const scientists = [
     born: 1879,
     dead: 1955,
     id: 1,
+    photo:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Albert_Einstein_Head_cleaned.jpg/1280px-Albert_Einstein_Head_cleaned.jpg",
   },
   {
     name: "Isaac",
@@ -153,6 +155,8 @@ const scientists = [
     born: 1643,
     dead: 1727,
     id: 2,
+    photo:
+      "https://static.tildacdn.com/tild3239-3766-4437-b563-313537636236/0fb7abcf7ca88b9f0d73.jpg",
   },
   {
     name: "Galileo",
@@ -160,6 +164,8 @@ const scientists = [
     born: 1564,
     dead: 1642,
     id: 3,
+    photo:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Justus_Sustermans_-_Portrait_of_Galileo_Galilei%2C_1636.jpg/960px-Justus_Sustermans_-_Portrait_of_Galileo_Galilei%2C_1636.jpg",
   },
   {
     name: "Marie",
@@ -167,6 +173,7 @@ const scientists = [
     born: 1867,
     dead: 1934,
     id: 4,
+    photo: "https://library.vladimir.ru/wp-content/uploads/2021/06/kyuri.jpeg",
   },
   {
     name: "Johannes",
@@ -174,6 +181,8 @@ const scientists = [
     born: 1571,
     dead: 1630,
     id: 5,
+    photo:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Portrait_Confused_With_Johannes_Kepler_1610.jpg/330px-Portrait_Confused_With_Johannes_Kepler_1610.jpg",
   },
   {
     name: "Nicolaus",
@@ -181,6 +190,8 @@ const scientists = [
     born: 1473,
     dead: 1543,
     id: 6,
+    photo:
+      "https://upload.wikimedia.org/wikipedia/commons/f/f2/Nikolaus_Kopernikus.jpg",
   },
   {
     name: "Max",
@@ -188,6 +199,8 @@ const scientists = [
     born: 1858,
     dead: 1947,
     id: 7,
+    photo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqkIa987JKYwxg1zNn_lfxuRFH2RJy93_mYviOco4R__nZ-InC3XLcvxXPUE95__up9knZ4aovKRE5_mp93rXMYrHyin6Sjwme_2xtpw&s=10",
   },
   {
     name: "Katherine",
@@ -195,6 +208,8 @@ const scientists = [
     born: 1898,
     dead: 1979,
     id: 8,
+    photo:
+      "https://chemistry.herzen.spb.ru/wp-content/uploads/2020/04/%D0%9A%D1%8D%D1%82%D1%80%D0%B8%D0%BD-%D0%91%D0%BB%D0%BE%D0%B4%D0%B6%D0%B5%D1%82%D1%82.jpg",
   },
   {
     name: "Ada",
@@ -202,6 +217,8 @@ const scientists = [
     born: 1815,
     dead: 1852,
     id: 9,
+    photo:
+      "https://habrastorage.org/getpro/habr/upload_files/757/f05/af3/757f05af33a35b1e4e19a5f00ecb0d68.jpg",
   },
   {
     name: "Sarah E.",
@@ -209,6 +226,8 @@ const scientists = [
     born: 1855,
     dead: 1905,
     id: 10,
+    photo:
+      "https://images.squarespace-cdn.com/content/v1/6859cdab1f0d903d21547e64/1751057746052-Y1PCR4KSDS1RXDP9N9P3/image-asset.jpeg",
   },
   {
     name: "Lise",
@@ -216,6 +235,8 @@ const scientists = [
     born: 1878,
     dead: 1968,
     id: 11,
+    photo:
+      "https://www.mpg.de/11718399/original-1771321239.jpg?t=ZXlKM2FXUjBhQ0k2T1RZMkxDSnZZbXBmYVdRaU9qRXhOekU0TXprNWZRPT0tLTAzZTNlNDQyY2I4YzM0YzQyODMwNTFiNzU5N2ZjYzc5MDRmOWJhNjk",
   },
   {
     name: "Hanna",
@@ -223,8 +244,25 @@ const scientists = [
     born: 1829,
     dead: 1909,
     id: 12,
+    photo:
+      "https://upload.wikimedia.org/wikipedia/commons/7/74/Hammarstr%C3%B6m%2C_Hanna_%281829%E2%80%931914%29.png",
   },
 ];
+
+function renderScientists(list) {
+  const container = document.querySelector("#scientists-grid");
+  if (!container) return;
+
+  container.innerHTML = list
+    .map(
+      (scientist) => `
+        <img src="${scientist.photo || ""}" alt="${scientist.name} ${scientist.surname}" />
+      `,
+    )
+    .join("");
+}
+
+renderScientists(scientists);
 
 // 1.
 function _19thCentury(scientists) {
@@ -235,8 +273,7 @@ function _19thCentury(scientists) {
 }
 
 button1.addEventListener("click", () => {
-  const result = _19thCentury(scientists);
-  console.log(result);
+  renderScientists(_19thCentury(scientists));
 });
 // 2. Сортировка по алфавиту
 function AlphabetofScientists(scientists) {
@@ -340,41 +377,36 @@ function which_scientist(scientists) {
 // ==========================================
 
 button2.addEventListener("click", () => {
-  const result = AlphabetofScientists(scientists);
-  console.log("Вчені за алфавітом:", result);
+  renderScientists(AlphabetofScientists(scientists));
 });
 
 button3.addEventListener("click", () => {
-  const result = orderYears(scientists);
-  console.log("Вчені за кількістю прожитих років:", result);
+  renderScientists(orderYears(scientists));
 });
 
 button4.addEventListener("click", () => {
-  const result = futureborned(scientists);
-  console.log("Вчений, який народився найпізніше:", result);
+  renderScientists([futureborned(scientists)]);
 });
 
 button5.addEventListener("click", () => {
-  const result = findMatchingLetters(scientists);
-  console.log("Вчені з однаковими першими літерами імені та прізвища:", result);
+  renderScientists(findMatchingLetters(scientists));
 });
 
 button6.addEventListener("click", () => {
-  const result = findtheBirth(scientists);
-  console.log(result);
+  renderScientists(
+    scientists.filter((scientist) => scientist.name === "Albert"),
+  );
 });
 
 button7.addEventListener("click", () => {
-  const result = SurnamewithC(scientists);
-  console.log("Вчені, прізвища яких починаються на 'С':", result);
+  renderScientists(SurnamewithC(scientists));
 });
 
 button8.addEventListener("click", () => {
-  const result = deleteLetter(scientists);
-  console.log("Список вчених без літери 'А' в імені:", result);
+  renderScientists(deleteLetter(scientists));
 });
 
 button9.addEventListener("click", () => {
-  const result = which_scientist(scientists);
-  console.log("Наймолодший та найстаріший вчені:", result);
+  const { theYoungest, theOldest } = which_scientist(scientists);
+  renderScientists([theOldest, theYoungest]);
 });

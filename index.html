@@ -4,6 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+      }
+
+      .scientists-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(3, 100px);
+        column-gap: 59px;
+        row-gap: 36px;
+        margin: 16px 59px 36px;
+        justify-content: start;
+      }
+
+      .scientists-grid img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+        display: block;
+      }
+    </style>
   </head>
   <body>
     <input class="inp1" placeholder="Введіть число" type="text" />
@@ -29,6 +54,7 @@
         <input class="minutes_inp" placeholder="Введіть число" type="text" />
         <p class="days_p"></p>
       </div>
+      <div class="scientists-grid" id="scientists-grid"></div>
     </div>
     <p class="p"></p>
     <button class="button-1">Які вчені народилися в 19 ст.</button>
