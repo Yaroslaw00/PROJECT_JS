@@ -1,134 +1,248 @@
-// const input1 = document.querySelector(".inp1");
-// const input2 = document.querySelector(".inp2");
-// input1.addEventListener("input", calculator);
-// input2.addEventListener("input", calculator);
-// let result = document.querySelector(".p");
-// const sume = document.querySelector(".plus");
-// const subtract = document.querySelector(".minus");
-// const multiply = document.querySelector(".multiplying");
-// const divide = document.querySelector(".dividying");
-// sume.addEventListener("click", calculator);
-// subtract.addEventListener("click", calculator);
-// multiply.addEventListener("click", calculator);
-// divide.addEventListener("click", calculator);
+// ==========================
+// Перевірка високосного року
+// ==========================
 
-// function calculator(event) {
-//   const num1 = parseFloat(input1.value);
-//   const num2 = parseFloat(input2.value);
+const yearInput = document.getElementById("yearInput");
+const yearBtn = document.getElementById("yearBtn");
+const yearResult = document.getElementById("yearResult");
 
-//   const target = event.target;
-//   if (isNaN(num1) || isNaN(num2)) {
-//     result.textContent = "Введите корректное значение";
-//     return;
-//   }
-//   if (target === sume) {
-//     const fin = num1 + num2;
-//     result.textContent = `Результат: ${fin}`;
-//   } else if (target === subtract) {
-//     const sub = num1 - num2;
-//     result.textContent = `Результат: ${sub}`;
-//   } else if (target === multiply) {
-//     const mult = num1 * num2;
-//     result.textContent = `Результат: ${mult}`;
-//   } else if (target === divide && num2 !== 0) {
-//     const divi = num1 / num2;
-//     result.textContent = `Результат: ${divi}`;
-//   }
-// }
+yearBtn.addEventListener("click", () => {
+  const year = Number(yearInput.value);
+
+  if (!year) {
+    yearResult.textContent = "Введіть рік!";
+    return;
+  }
+
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    yearResult.textContent = "Ви народилися у високосний рік!";
+  } else {
+    yearResult.textContent = "Ви народилися у невисокосний рік!";
+  }
+});
+
+// ==========================
+// Вгадай число
+// ==========================
+
+const numberInput = document.getElementById("numberInput");
+const numberBtn = document.getElementById("numberBtn");
+const numberResult = document.getElementById("numberResult");
+
+// Комп'ютер загадує число від 1 до 10
+numberBtn.addEventListener("click", () => {
+  const randomNumber = Math.floor(Math.random() * 10) + 1;
+  const userNumber = Number(numberInput.value);
+
+  if (userNumber === randomNumber) {
+    numberResult.textContent = `Вітаю, ви вгадали число! (${randomNumber})`;
+  } else {
+    numberResult.textContent = `Не вгадали. Комп'ютер загадав ${randomNumber}`;
+  }
+
+  numberInput.value = ""; // очищает поле ввода
+});
+const input1 = document.querySelector(".inp1");
+const input2 = document.querySelector(".inp2");
+const result_p = document.querySelector(".result");
+input1.addEventListener("input", calculator);
+input2.addEventListener("input", calculator);
+let result = document.querySelector(".p");
+const sume = document.querySelector(".plus");
+const subtract = document.querySelector(".minus");
+const multiply = document.querySelector(".multiplying");
+const divide = document.querySelector(".dividying");
+sume.addEventListener("click", calculator);
+subtract.addEventListener("click", calculator);
+multiply.addEventListener("click", calculator);
+divide.addEventListener("click", calculator);
+
+function calculator(event) {
+  const num1 = parseFloat(input1.value);
+  const num2 = parseFloat(input2.value);
+
+  const target = event.target;
+  if (isNaN(num1) || isNaN(num2)) {
+    result_p.textContent = "Введите корректное значение";
+    return;
+  }
+  if (target === sume) {
+    const fin = num1 + num2;
+    result_p.textContent = `Результат: ${fin}`;
+  } else if (target === subtract) {
+    const sub = num1 - num2;
+    result_p.textContent = `Результат: ${sub}`;
+  } else if (target === multiply) {
+    const mult = num1 * num2;
+    result_p.textContent = `Результат: ${mult}`;
+  } else if (target === divide && num2 !== 0) {
+    const divi = num1 / num2;
+    result_p.textContent = `Результат: ${divi}`;
+  }
+}
 
 // (Камень, ножницы, бумага);
 
-// const getStoneBtn = document.querySelector(".stone");
-// const getScissorsBtn = document.querySelector(".scissors");
-// const getPaperBtn = document.querySelector(".paper");
-// const resultOfGame = document.querySelector(".result_game");
-// const computerAnswer = document.querySelector(".computer_answer");
-// const computerWins = document.querySelector(".computer");
-// const usersWins = document.querySelector(".user");
+const getStoneBtn = document.querySelector(".stone");
+const getScissorsBtn = document.querySelector(".scissors");
+const getPaperBtn = document.querySelector(".paper");
+const resultOfGame = document.querySelector(".result_game");
+const computerAnswer = document.querySelector(".computer_answer");
+const computerWins = document.querySelector(".computer");
+const usersWins = document.querySelector(".user");
 
-// const allAnswers = ["stone", "scissors", "paper"];
+const allAnswers = ["stone", "scissors", "paper"];
 
-// function randomAnswer(answer) {
-//   const computerChoise = Math.floor(Math.random() * 3);
-//   const computerAnswer = allAnswers[computerChoise];
-//   return computerAnswer;
-// }
+function randomAnswer(answer) {
+  const computerChoise = Math.floor(Math.random() * 3);
+  const computerAnswer = allAnswers[computerChoise];
+  return computerAnswer;
+}
 
-// let counterUser = 0;
-// let counterComputer = 0;
+let counterUser = 0;
+let counterComputer = 0;
 
-// getStoneBtn.addEventListener("click", (event) => {
-//   const computerChoise = randomAnswer();
-//   console.log(computerChoise);
-//   const userChoise = allAnswers[0];
-//   if (computerChoise === allAnswers[2]) {
-//     resultOfGame.textContent = "you lose!:(";
-//     counterComputer += 1;
-//     computerWins.innerHTML = counterComputer;
-//   }
-//   if (computerChoise === allAnswers[1]) {
-//     resultOfGame.textContent = "you win!:)";
-//     counterUser += 1;
-//     usersWins.innerHTML = counterUser;
-//   }
-//   if (computerChoise === allAnswers[0]) {
-//     resultOfGame.textContent = "draw";
-//   }
-// });
-// getScissorsBtn.addEventListener("click", (event) => {
-//   const computerChoise = randomAnswer();
-//   console.log(computerChoise);
-//   const userChoise = allAnswers[1];
-//   if (computerChoise === allAnswers[0]) {
-//     resultOfGame.textContent = "you lose!:(";
-//     counterComputer += 1;
-//     computerWins.innerHTML = counterComputer;
-//   }
-//   if (computerChoise === allAnswers[2]) {
-//     resultOfGame.textContent = "you win!:)";
-//     counterUser += 1;
-//     usersWins.innerHTML = counterUser;
-//   }
-//   if (computerChoise === allAnswers[1]) {
-//     resultOfGame.textContent = "draw";
-//   }
-// });
-// getPaperBtn.addEventListener("click", (event) => {
-//   const computerChoise = randomAnswer();
-//   console.log(computerChoise);
-//   const userChoise = allAnswers[2];
-//   if (computerChoise === allAnswers[2]) {
-//     resultOfGame.textContent = "draw";
-//   }
-//   if (computerChoise === allAnswers[0]) {
-//     resultOfGame.textContent = "you win!:)";
-//     counterUser += 1;
-//     usersWins.innerHTML = counterUser;
-//   }
-//   if (computerChoise === allAnswers[1]) {
-//     resultOfGame.textContent = "you lose!:(";
-//     counterComputer += 1;
-//     computerWins.innerHTML = counterComputer;
-//   }
-// });
-// const minutes_inp = document.querySelector(".minutes_inp");
-// const p_days = document.querySelector(".days_p");
-// minutes_inp.addEventListener("input", converter);
-// function converter(event) {
-//   const number_input = parseFloat(minutes_inp.value);
-//   if (isNaN(number_input)) {
-//     return;
-//   }
-//   const days = Math.floor(number_input / 1440);
-//   const ostacha = Math.floor(number_input % 1440);
-//   const hours = Math.floor(ostacha / 60);
-//   const minutes = Math.floor(number_input % 60);
-//   // console.log(days);
-//   // console.log(ostacha);
-//   p_days.textContent = `${days}днів ${hours} годин ${minutes} хвилин`;
-//   console.log(hours);
-//   console.log(minutes);
-// }
+getStoneBtn.addEventListener("click", (event) => {
+  const computerChoise = randomAnswer();
+  console.log(computerChoise);
+  const userChoise = allAnswers[0];
+  if (computerChoise === allAnswers[2]) {
+    resultOfGame.textContent = "you lose!:(";
+    counterComputer += 1;
+    computerWins.innerHTML = counterComputer;
+  }
+  if (computerChoise === allAnswers[1]) {
+    resultOfGame.textContent = "you win!:)";
+    counterUser += 1;
+    usersWins.innerHTML = counterUser;
+  }
+  if (computerChoise === allAnswers[0]) {
+    resultOfGame.textContent = "draw";
+  }
+});
+getScissorsBtn.addEventListener("click", (event) => {
+  const computerChoise = randomAnswer();
+  console.log(computerChoise);
+  const userChoise = allAnswers[1];
+  if (computerChoise === allAnswers[0]) {
+    resultOfGame.textContent = "you lose!:(";
+    counterComputer += 1;
+    computerWins.innerHTML = counterComputer;
+  }
+  if (computerChoise === allAnswers[2]) {
+    resultOfGame.textContent = "you win!:)";
+    counterUser += 1;
+    usersWins.innerHTML = counterUser;
+  }
+  if (computerChoise === allAnswers[1]) {
+    resultOfGame.textContent = "draw";
+  }
+});
+getPaperBtn.addEventListener("click", (event) => {
+  const computerChoise = randomAnswer();
+  console.log(computerChoise);
+  const userChoise = allAnswers[2];
+  if (computerChoise === allAnswers[2]) {
+    resultOfGame.textContent = "draw";
+  }
+  if (computerChoise === allAnswers[0]) {
+    resultOfGame.textContent = "you win!:)";
+    counterUser += 1;
+    usersWins.innerHTML = counterUser;
+  }
+  if (computerChoise === allAnswers[1]) {
+    resultOfGame.textContent = "you lose!:(";
+    counterComputer += 1;
+    computerWins.innerHTML = counterComputer;
+  }
+});
+const minutes_inp = document.querySelector(".minutes_inp");
+const p_days = document.querySelector(".days_p");
+minutes_inp.addEventListener("input", converter);
+function converter(event) {
+  const number_input = parseFloat(minutes_inp.value);
+  if (isNaN(number_input)) {
+    return;
+  }
+  const days = Math.floor(number_input / 1440);
+  const ostacha = Math.floor(number_input % 1440);
+  const hours = Math.floor(ostacha / 60);
+  const minutes = Math.floor(number_input % 60);
+  // console.log(days);
+  // console.log(ostacha);
+  p_days.textContent = `${days}днів ${hours} годин ${minutes} хвилин`;
+  console.log(hours);
+  console.log(minutes);
+}
+const students = [
+  {
+    name: "Іван Петренко",
+    role: "Frontend Developer",
+    description:
+      "Розробляє інтерфейси веб-додатків, працює з HTML, CSS, JavaScript та React.",
+    photo: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    name: "Олена Коваль",
+    role: "UI/UX Designer",
+    description:
+      "Створює сучасні дизайни інтерфейсів, покращує зручність користування та візуальний стиль.",
+    photo: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    name: "Максим Шевченко",
+    role: "Backend Developer",
+    description:
+      "Працює над серверною логікою, базами даних та API для стабільної роботи додатків.",
+    photo: "https://randomuser.me/api/portraits/men/55.jpg",
+  },
+  {
+    name: "Софія Мельник",
+    role: "Project Manager",
+    description:
+      "Координує роботу команди, слідкує за дедлайнами та допомагає реалізовувати проєкти.",
+    photo: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+];
+
+let current = 0;
+
+const photo = document.getElementById("photo");
+const name = document.getElementById("name");
+const role = document.getElementById("role");
+const description = document.getElementById("description");
+const dotsContainer = document.getElementById("dots");
+
+function createDots() {
+  dotsContainer.innerHTML = "";
+  students.forEach((_, index) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (index === current) dot.classList.add("active");
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function showStudent(index) {
+  const student = students[index];
+  photo.src = student.photo;
+  name.textContent = student.name;
+  role.textContent = student.role;
+  description.textContent = student.description;
+  createDots();
+}
+
+document.getElementById("next").addEventListener("click", () => {
+  current = (current + 1) % students.length;
+  showStudent(current);
+});
+
+document.getElementById("prev").addEventListener("click", () => {
+  current = (current - 1 + students.length) % students.length;
+  showStudent(current);
+});
+
+showStudent(current);
 const button1 = document.querySelector(".button-1");
 const button2 = document.querySelector(".button-2");
 const button3 = document.querySelector(".button-3");

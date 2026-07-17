@@ -28,15 +28,150 @@
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
         display: block;
       }
+      .block {
+        margin-bottom: 50px;
+      }
+
+      input {
+        padding: 10px;
+        width: 220px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        outline: none;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 20px;
+        background: black;
+        color: white;
+        cursor: pointer;
+      }
+
+      p {
+        color: green;
+        font-weight: bold;
+      }
+
+      hr {
+        width: 80%;
+        margin: 40px auto;
+      }
+      .slider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 80px;
+        margin-bottom: 100px;
+      }
+
+      .arrow {
+        background: none;
+        border: none;
+        font-size: 42px;
+        cursor: pointer;
+        color: #333;
+        transition: transform 0.2s;
+      }
+
+      .arrow:hover {
+        transform: scale(1.1);
+      }
+
+      .card {
+        text-align: center;
+        max-width: 360px;
+      }
+
+      .card h2 {
+        margin-bottom: 20px;
+        font-size: 30px;
+        color: #222;
+      }
+
+      .card img {
+        width: 170px;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        background: #ddd;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        color: #222;
+      }
+
+      .card .role {
+        margin: 0 0 12px;
+        color: #666;
+        font-weight: bold;
+      }
+
+      .card p {
+        margin: 0 0 20px;
+        color: #555;
+        line-height: 1.5;
+      }
+
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 28px;
+        height: 4px;
+        background: #ccc;
+        border-radius: 2px;
+      }
+
+      .dot.active {
+        background: #555;
+      }
     </style>
   </head>
   <body>
+    <div class="block">
+      <h2>Перевір в який рік ти народився</h2>
+
+      <input
+        type="number"
+        id="yearInput"
+        placeholder="Введіть рік народження"
+      />
+
+      <button id="yearBtn">🔍</button>
+
+      <p id="yearResult"></p>
+    </div>
+
+    <hr />
+
+    <div class="block">
+      <h2>Вгадай число, яке загадав комп'ютер</h2>
+
+      <input type="number" id="numberInput" placeholder="Введіть число" />
+
+      <button id="numberBtn">🔍</button>
+
+      <p id="numberResult"></p>
+    </div>
+
     <input class="inp1" placeholder="Введіть число" type="text" />
     <input class="inp2" placeholder="Введіть число" type="text" />
     <button class="plus">+</button>
     <button class="minus">-</button>
     <button class="multiplying">*</button>
     <button class="dividying">/</button>
+    <p class="result"></p>
     <div>
       <p>Камінь - ножиці - папір</p>
       <button class="stone">stone</button>
@@ -53,6 +188,21 @@
       <div>
         <input class="minutes_inp" placeholder="Введіть число" type="text" />
         <p class="days_p"></p>
+      </div>
+      <div class="slider">
+        <button class="arrow" id="prev">❮</button>
+
+        <div class="card">
+          <h2>Наша команда</h2>
+          <img id="photo" src="" alt="Фото студента" />
+          <h3 id="name"></h3>
+          <p class="role" id="role"></p>
+          <p id="description"></p>
+
+          <div class="dots" id="dots"></div>
+        </div>
+
+        <button class="arrow" id="next">❯</button>
       </div>
       <div class="scientists-grid" id="scientists-grid"></div>
     </div>
